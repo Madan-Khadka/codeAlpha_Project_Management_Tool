@@ -465,90 +465,12 @@ Connected Users
 
 ---
 
-## 17. Project Structure
 
-```text
-project_management/
-│
-├── manage.py
-│
-├── project_management/
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── asgi.py
-│   └── wsgi.py
-│
-├── accounts/
-│   ├── migrations/
-│   │   └── __init__.py
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   └── forms.py
-│
-├── projects/
-│   ├── migrations/
-│   │   ├── __init__.py
-│   │   └── 0001_initial.py
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   └── forms.py
-│
-├── tasks/
-│   ├── migrations/
-│   │   ├── __init__.py
-│   │   └── 0001_initial.py
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   └── forms.py
-│
-├── comments/
-│   ├── migrations/
-│   │   ├── __init__.py
-│   │   └── 0001_initial.py
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── urls.py
-│   ├── views.py
-│   └── forms.py
-│
-├── templates/
-│   ├── base.html
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── project.html
-│   └── task_detail.html
-│
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   │
-│   └── js/
-│       └── main.js
-│
-├── db.sqlite3
-│
-└── README.md
 ```
 
 ---
 
-## 18. Django Applications
+## 17. Django Applications
 
 The project is divided into multiple Django apps.
 
@@ -594,7 +516,7 @@ Responsible for:
 
 ---
 
-## 19. Database Models
+## 18. Database Models
 
 The main database entities are:
 
@@ -640,7 +562,7 @@ Comment
 
 ---
 
-## 20. Authentication System
+## 19. Authentication System
 
 ProjectFlow uses Django's built-in authentication system.
 
@@ -657,7 +579,7 @@ Protected views use Django authentication mechanisms to prevent unauthorized acc
 
 ---
 
-## 21. Forms and Validation
+## 20. Forms and Validation
 
 Django Forms are used to process user input.
 
@@ -699,7 +621,7 @@ Form Displayed Again
 
 ---
 
-## 22. URL Routing
+## 21. URL Routing
 
 The application uses Django URL routing.
 
@@ -733,7 +655,7 @@ Django Admin Panel
 
 ---
 
-## 23. Admin Panel
+## 22. Admin Panel
 
 Django's built-in admin panel is available for administrative management.
 
@@ -759,7 +681,7 @@ python manage.py createsuperuser
 
 ---
 
-## 24. Installation Requirements
+## 23. Installation Requirements
 
 Before running the project, make sure Python is installed.
 
@@ -780,7 +702,7 @@ Daphne
 
 ---
 
-## 25. Create Virtual Environment
+## 24. Create Virtual Environment
 
 Create a virtual environment:
 
@@ -802,7 +724,7 @@ After activation, the terminal should display:
 
 ---
 
-## 26. Install Required Packages
+## 25. Install Required Packages
 
 Install Django:
 
@@ -842,7 +764,7 @@ pip list
 
 ---
 
-## 27. Database Setup
+## 26. Database Setup
 
 After creating or updating models, generate migrations:
 
@@ -870,7 +792,7 @@ python manage.py check
 
 ---
 
-## 28. Create Admin User
+## 27. Create Admin User
 
 Create a Django superuser:
 
@@ -893,7 +815,7 @@ The password must be entered exactly the same during both password prompts.
 
 ---
 
-## 29. Run Development Server
+## 28. Run Development Server
 
 Activate the virtual environment:
 
@@ -927,7 +849,7 @@ http://127.0.0.1:8000/accounts/login/
 
 ---
 
-## 30. Development Workflow
+## 29. Development Workflow
 
 The recommended development workflow is:
 
@@ -971,7 +893,7 @@ Test Application
 
 ---
 
-## 31. Application User Flow
+## 30. Application User Flow
 
 The complete user flow is:
 
@@ -1007,7 +929,7 @@ Project Completed
 
 ---
 
-## 32. Project Collaboration Flow
+## 31. Project Collaboration Flow
 
 Multiple users can collaborate on a project.
 
@@ -1033,7 +955,7 @@ Track Project Progress
 
 ---
 
-## 33. Task Lifecycle
+## 32. Task Lifecycle
 
 A task normally follows this lifecycle:
 
@@ -1059,7 +981,7 @@ IN PROGRESS
 
 ---
 
-## 34. Error Checking Commands
+## 33. Error Checking Commands
 
 Use these commands when debugging the project.
 
@@ -1113,7 +1035,7 @@ pip list
 
 ---
 
-## 35. Common Problems and Solutions
+## 34. Common Problems and Solutions
 
 ### Problem 1 – Django Not Found
 
@@ -1221,7 +1143,7 @@ python manage.py check
 
 ---
 
-## 36. Frontend
+## 35. Frontend
 
 The frontend uses:
 
@@ -1252,7 +1174,7 @@ The `base.html` template provides common elements such as:
 
 ---
 
-## 37. JavaScript
+## 36. JavaScript
 
 JavaScript is used for client-side interaction.
 
@@ -1268,7 +1190,7 @@ Possible functionality includes:
 
 ---
 
-## 38. Static Files
+## 37. Static Files
 
 Static files are organized as:
 
@@ -1292,7 +1214,7 @@ JavaScript controls browser-side interaction.
 
 ---
 
-## 39. Security
+## 38. Security
 
 The application uses Django security features such as:
 
@@ -1308,7 +1230,7 @@ For production deployment, additional security settings should be configured.
 
 ---
 
-## 40. Development vs Production
+## 39. Development vs Production
 
 This project is primarily designed for development and internship demonstration.
 
@@ -1331,7 +1253,7 @@ For production, security configuration should be improved, including:
 
 ---
 
-## 41. Testing Checklist
+## 40. Testing Checklist
 
 Before submitting the project, test the following:
 
@@ -1360,7 +1282,7 @@ Before submitting the project, test the following:
 
 ---
 
-## 42. Important Django Commands
+## 41. Important Django Commands
 
 ### Start Project
 
@@ -1409,7 +1331,7 @@ python manage.py check
 
 ---
 
-## 43. Project Architecture Summary
+## 42. Project Architecture Summary
 
 ```text
                     PROJECTFLOW
@@ -1435,7 +1357,7 @@ python manage.py check
 
 ---
 
-## 44. Real-Time Architecture
+## 43. Real-Time Architecture
 
 When WebSockets are enabled:
 
@@ -1459,7 +1381,7 @@ This allows connected users to receive project updates without manually refreshi
 
 ---
 
-## 45. Learning Concepts Used
+## 44. Learning Concepts Used
 
 This project demonstrates several important concepts.
 
@@ -1515,7 +1437,7 @@ This project demonstrates several important concepts.
 
 ---
 
-## 46. CRUD Operations
+## 45. CRUD Operations
 
 ProjectFlow implements CRUD concepts.
 
@@ -1561,7 +1483,7 @@ D → Delete
 
 ---
 
-## 47. Advantages of ProjectFlow
+## 46. Advantages of ProjectFlow
 
 ProjectFlow provides:
 
@@ -1577,7 +1499,7 @@ ProjectFlow provides:
 
 ---
 
-## 48. Future Improvements
+## 47. Future Improvements
 
 The application can be extended with:
 
@@ -1600,7 +1522,7 @@ The application can be extended with:
 
 ---
 
-## 49. Possible Production Architecture
+## 48. Possible Production Architecture
 
 For a production version:
 
@@ -1624,7 +1546,7 @@ This architecture would provide better scalability than the development setup.
 
 ---
 
-## 50. Expected Result
+## 49. Expected Result
 
 After successful implementation, ProjectFlow should provide a complete workflow:
 
@@ -1658,7 +1580,7 @@ Complete Project
 
 ---
 
-## 51. Project Goal
+## 50. Project Goal
 
 The primary goal of this internship project is to demonstrate practical knowledge of full-stack web development using Django.
 
@@ -1692,7 +1614,7 @@ into a single collaborative application.
 
 ---
 
-## 52. Conclusion
+## 51. Conclusion
 
 ProjectFlow is a full-stack project management application designed to simplify team collaboration and project tracking.
 
