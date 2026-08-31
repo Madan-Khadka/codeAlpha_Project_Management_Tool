@@ -1,0 +1,490 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- =====================================================
+         PROJECT HEADER
+         ===================================================== -->
+
+    <div class="project-header">
+
+        <div>
+            <h1>{{ project.name }}</h1>
+
+            {% if project.description %}
+                <p>{{ project.description }}</p>
+            {% else %}
+                <p>No project description available.</p>
+            {% endif %}
+        </div>
+
+        <div class="project-actions">
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="btn btn-secondary"
+            >
+                Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PROJECT INFORMATION
+         ===================================================== -->
+
+    <div class="project-info">
+
+        <div class="info-card">
+
+            <h3>Project Owner</h3>
+
+            <p>
+                {{ project.owner.username }}
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>Created</h3>
+
+            <p>
+                {{ project.created_at|date:"M d, Y" }}
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>Members</h3>
+
+            <p>
+                {{ project.members.count }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PROJECT MEMBERS
+         ===================================================== -->
+
+    <div class="members-section">
+
+        <h2>Project Members</h2>
+
+        {% if project.members.all %}
+
+            <div class="members-list">
+
+                {% for member in project.members.all %}
+
+                    <div class="member-card">
+
+                        <div class="member-avatar">
+                            {{ member.username|first|upper }}
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                {{ member.username }}
+                            </strong>
+
+                            {% if member == project.owner %}
+
+                                <span class="owner-badge">
+                                    Owner
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                {% empty %}
+
+                    <p>No members added yet.</p>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <p>No members found.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =====================================================
+         CREATE TASK SECTION
+         ===================================================== -->
+
+    <div class="create-task-section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Create New Task</h2>
+
+                <p>
+                    Add a new task to this project.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- IMPORTANT:
+             project.id is available because this page
+             is rendered from project_detail view.
+        -->
+
+        <form
+            method="POST"
+            action="{% url 'create_task' project.id %}"
+            class="task-form"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- =================================================
+                 TASK TITLE
+                 ================================================= -->
+
+            <div class="form-group">
+
+                <label for="id_title">
+                    Task Title
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    id="id_title"
+                    placeholder="Enter task title"
+                    required
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 TASK DESCRIPTION
+                 ================================================= -->
+
+            <div class="form-group">
+
+                <label for="id_description">
+                    Description
+                </label>
+
+                <textarea
+                    name="description"
+                    id="id_description"
+                    rows="4"
+                    placeholder="Describe the task..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- =================================================
+                 TASK STATUS
+                 ================================================= -->
+
+            <div class="form-group">
+
+                <label for="id_status">
+                    Status
+                </label>
+
+                <select
+                    name="status"
+                    id="id_status"
+                >
+
+                    <option value="todo">
+                        To Do
+                    </option>
+
+                    <option value="in_progress">
+                        In Progress
+                    </option>
+
+                    <option value="done">
+                        Done
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =================================================
+                 TASK PRIORITY
+                 ================================================= -->
+
+            <div class="form-group">
+
+                <label for="id_priority">
+                    Priority
+                </label>
+
+                <select
+                    name="priority"
+                    id="id_priority"
+                >
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                    <option value="medium" selected>
+                        Medium
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =================================================
+                 DUE DATE
+                 ================================================= -->
+
+            <div class="form-group">
+
+                <label for="id_due_date">
+                    Due Date
+                </label>
+
+                <input
+                    type="date"
+                    name="due_date"
+                    id="id_due_date"
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 ASSIGN USER
+                 ================================================= -->
+
+            {% if project.members.all %}
+
+                <div class="form-group">
+
+                    <label for="id_assigned_to">
+                        Assign To
+                    </label>
+
+                    <select
+                        name="assigned_to"
+                        id="id_assigned_to"
+                    >
+
+                        <option value="">
+                            -- Select Member --
+                        </option>
+
+                        {% for member in project.members.all %}
+
+                            <option value="{{ member.id }}">
+                                {{ member.username }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- =================================================
+                 CREATE BUTTON
+                 ================================================= -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Create Task
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- =====================================================
+         TASK LIST
+         ===================================================== -->
+
+    <div class="tasks-section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Project Tasks</h2>
+
+                <p>
+                    Tasks assigned to this project.
+                </p>
+            </div>
+
+        </div>
+
+
+        {% if project.tasks.all %}
+
+            <div class="task-list">
+
+                {% for task in project.tasks.all %}
+
+                    <div class="task-card">
+
+                        <!-- Task title -->
+
+                        <div class="task-card-header">
+
+                            <h3>
+                                {{ task.title }}
+                            </h3>
+
+
+                            <!-- Status -->
+
+                            <span class="task-status">
+
+                                {{ task.status|title }}
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- Description -->
+
+                        {% if task.description %}
+
+                            <p class="task-description">
+                                {{ task.description }}
+                            </p>
+
+                        {% endif %}
+
+
+                        <!-- Task information -->
+
+                        <div class="task-meta">
+
+                            {% if task.priority %}
+
+                                <span>
+                                    Priority:
+                                    {{ task.priority|title }}
+                                </span>
+
+                            {% endif %}
+
+
+                            {% if task.assigned_to %}
+
+                                <span>
+                                    Assigned to:
+                                    {{ task.assigned_to.username }}
+                                </span>
+
+                            {% endif %}
+
+
+                            {% if task.due_date %}
+
+                                <span>
+                                    Due:
+                                    {{ task.due_date|date:"M d, Y" }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Task actions -->
+
+                        <div class="task-actions">
+
+                            <a
+                                href="{% url 'task_detail' task.id %}"
+                                class="btn btn-secondary"
+                            >
+                                View Task
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                {% empty %}
+
+                    <div class="empty-state">
+
+                        <h3>No Tasks Yet</h3>
+
+                        <p>
+                            Create your first task for this project.
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <h3>No Tasks Yet</h3>
+
+                <p>
+                    Create your first task for this project.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+<div
+    class="task-card"
+    draggable="true"
+    data-task-id="{{ task.id }}"
+>
+
+    <div class="d-flex justify-content-between">
+
+        <h6 class="task-title">
+            {{ task.title }}
+        </h6>
+
+        <span
+            class="badge priority-{{ task.priority|lower }}"
+        >
+            {{ task.get_priority_display }}
+        </span>
+
+    </div>
+
+
+    {% if task.description %}
+
+        <p class="task-description">
+
+            {{ task.description|truncatechars:80 }}
+
+        </p>
+
+    {% endif %}
+
+
+    <div class="task-meta">
+
+        {% if task.assigned_to %}
+
+            <span>
+                👤 {{ task.assigned_to.username }}
+            </span>
+
+        {% else %}
+
+            <span>
+                👤 Unassigned
+            </span>
+
+        {% endif %}
+
+
+        {% if task.due_date %}
+
+            <span>
+                 {{ task.due_date }}
+            </span>
+
+        {% endif %}
+
+    </div>
+
+
+    <a
+        href="{% url 'task_detail' task.id %}"
+        class="btn btn-sm btn-outline-primary mt-2"
+    >
+        View Task
+    </a>
+
+</div>
