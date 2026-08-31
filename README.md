@@ -1647,8 +1647,7 @@ Through this project, practical experience is gained in Django development, data
 ---
 
 ## Internship Information
-
-**Program:** Artificial Intelligence Tasks & Instructions  
+  
 **Organization:** CodeAlpha  
 **Task:** Task 3 – Project Management Tool  
 **Project:** ProjectFlow  
@@ -1663,7 +1662,7 @@ Through this project, practical experience is gained in Django development, data
 
 ## Author
 
-**Mohan Khadka**
+**Madan Khadka**
 
 Project developed as part of the **CodeAlpha Internship Program**.
 
